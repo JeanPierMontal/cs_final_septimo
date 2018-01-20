@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-01-2018 a las 15:00:59
+-- Tiempo de generación: 20-01-2018 a las 15:51:27
 -- Versión del servidor: 10.1.24-MariaDB
 -- Versión de PHP: 7.1.6
 
@@ -53,6 +53,37 @@ CREATE TABLE `clientes` (
   `apellido_cli` varchar(50) COLLATE utf8_bin NOT NULL,
   `direc_cli` varchar(50) COLLATE utf8_bin NOT NULL,
   `tele_cli` varchar(50) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_factura`
+--
+
+CREATE TABLE `detalle_factura` (
+  `id_factura` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `cantidad` double NOT NULL,
+  `total_dedalle` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `factura`
+--
+
+CREATE TABLE `factura` (
+  `id_factura` int(11) NOT NULL,
+  `ruc_fac` varchar(13) COLLATE utf8_bin DEFAULT NULL,
+  `sub12_fac` double DEFAULT NULL,
+  `fecha_fac` date NOT NULL,
+  `sub0_fac` double DEFAULT NULL,
+  `descuento_fac` double DEFAULT NULL,
+  `subt_fac` double NOT NULL,
+  `iva_fac` double NOT NULL,
+  `total_fac` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -113,6 +144,20 @@ ALTER TABLE `clientes`
   ADD UNIQUE KEY `id_cli` (`id_cli`);
 
 --
+-- Indices de la tabla `detalle_factura`
+--
+ALTER TABLE `detalle_factura`
+  ADD KEY `FK_det_fac-fac` (`id_factura`),
+  ADD KEY `FK_det_fac-pro` (`id_producto`);
+
+--
+-- Indices de la tabla `factura`
+--
+ALTER TABLE `factura`
+  ADD PRIMARY KEY (`id_factura`),
+  ADD UNIQUE KEY `id_factura` (`id_factura`);
+
+--
 -- Indices de la tabla `lineas`
 --
 ALTER TABLE `lineas`
@@ -167,6 +212,13 @@ ALTER TABLE `vendedores`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `detalle_factura`
+--
+ALTER TABLE `detalle_factura`
+  ADD CONSTRAINT `FK_det_fac-fac` FOREIGN KEY (`id_factura`) REFERENCES `factura` (`id_factura`),
+  ADD CONSTRAINT `FK_det_fac-pro` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_pro`);
 
 --
 -- Filtros para la tabla `productos`

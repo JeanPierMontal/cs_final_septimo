@@ -1,0 +1,19 @@
+1. git clone https://github.com/JeanPierMontal/cs_final_septimo.git --colocar la ruta del proyecto--
+   en la carpeta q se creo colocar los archivos a subir
+
+
+
+2. cd D:\DOCUMENTOS\ESCRITORIO\7MO\CLIENTE SERVIDOR 1\cs_final_septimo --colocar la ruta de la carpeta en la q se esta 
+trabajando donde clonastes el repositorio git--
+
+git init --inicia el repositorio--
+
+git add -A --para subir todo temporalmente--
+
+git status --muestra lo q esta x subir --
+
+git commit -m "comentario del archivo" --poner comentario a lo q va a subir--
+
+git push --sube los archivos--
+
+git push origin master -f --sube los archivos si da error--
