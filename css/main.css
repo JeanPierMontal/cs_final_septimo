@@ -47,10 +47,11 @@
     margin-left: 12px;
     font-family: cursive;
 }
-
-
+.eddy h5{
+    color: antiquewhite;
+}
 
 .error{
     text-align: center;
-    margin-top: 4%;        
+    margin-top: 8%;        
 }
