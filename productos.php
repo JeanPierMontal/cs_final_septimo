@@ -1,5 +1,5 @@
 <?php
-$conexion=mysqli_connect('localhost','root','','cs_final_septimo');
+include("php/conexion.php");
 ?>
 
 <!DOCTYPE html>

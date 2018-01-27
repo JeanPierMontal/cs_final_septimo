@@ -1,5 +1,14 @@
 <?php
-$conexion=mysqli_connect('localhost','root','','cs_final_septimo');
+include("php/conexion.php");
+
+/*
+$conn = @mysqli_connect() or die ("Problema de conexion a Servidor");
+$db = @mysqli_select_db("cs_final_septimo,$conn") or die ("Problema al conectar con Base de datos");
+
+$conn= mysqli_query("insert into productos (id_pro,nombre_pro,cantidad_pro,precio_pro,id_linea,id_cat)
+ values('$_POST[v]','$_POST[nombre_pro]','$_POST[cantidad_pro]','$_POST[precio_pro]', '$_POST[id_linea]','$_POST[id_cat]')",$conn);
+  mysql_close();*/
+
 ?>
 
 <!DOCTYPE html>
@@ -19,25 +28,26 @@ $conexion=mysqli_connect('localhost','root','','cs_final_septimo');
         <P>
         
     <fieldset>
+        
         <hr>
         <p>
         <label>
             <span class="dato_pro" > Nombre Pro:</span>
-            <input name="nombre_pro" size="30" maxlength="20" >
+            <input id="nombre_pro" name="nombre_pro" size="30" maxlength="20" >
         </label><p>
         <label>
                 <span class="dato_pro"> Cantidad Pro:</span> 
-                <input name="cantidad_pro" size="30" maxlength="20">
+                <input id="cantidad_pro" name="cantidad_pro" size="30" maxlength="20">
         </label><p>
         <label>
                 <span class="dato_pro"> Precio Pro:</span>
-                <input name="precio_pro" size="30" maxlength="10" >
+                <input id="precio_pro" name="precio_pro" size="30" maxlength="10" >
         </label><p>
         <label>
             
             <form method='POST'>
                 <span class="dato_pro"> Linea:</span>
-                <select class="com_id_linea" name="id_linea">
+                <select id="id_linea" class="com_id_linea" name="id_linea">
 
                 <?php
         
@@ -59,7 +69,7 @@ $conexion=mysqli_connect('localhost','root','','cs_final_septimo');
             
             <form method='POST'>
                 <span class="dato_pro" > Categoria:</span>
-                <select class="com_id_cat" name="id_linea">
+                <select id="id_cat" class="com_id_cat" name="id_linea">
 
                 <?php
         
@@ -80,9 +90,9 @@ $conexion=mysqli_connect('localhost','root','','cs_final_septimo');
 
         <a href="productos.php">
         
-                <img src="img/guardar.png" alt="guardar" > 
+                <img src="img/guardar.png" alt="guardar"> 
                     </a>
-
+                 
     </fieldset>
     
     <table>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-01-2018 a las 15:51:27
+-- Tiempo de generación: 27-01-2018 a las 14:20:38
 -- Versión del servidor: 10.1.24-MariaDB
 -- Versión de PHP: 7.1.6
 
@@ -38,7 +38,8 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`id_cat`, `nombre_cat`) VALUES
-(1, 'lacteos');
+(1, 'Lacteos'),
+(2, 'Genial');
 
 -- --------------------------------------------------------
 
@@ -54,6 +55,14 @@ CREATE TABLE `clientes` (
   `direc_cli` varchar(50) COLLATE utf8_bin NOT NULL,
   `tele_cli` varchar(50) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id_cli`, `identificacion_cli`, `nom_cli`, `apellido_cli`, `direc_cli`, `tele_cli`) VALUES
+(1, '0928344423', 'EDDY', 'MONTALVAN', 'COOP. LAS PALMAS', '0985362765'),
+(2, '1724909880', 'DAVID', 'TIGUA', 'SANTO DOMINGO', '0999564392');
 
 -- --------------------------------------------------------
 
@@ -97,6 +106,15 @@ CREATE TABLE `lineas` (
   `nombre_linea` varchar(50) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `lineas`
+--
+
+INSERT INTO `lineas` (`id_linea`, `nombre_linea`) VALUES
+(1, 'Linea de aseo'),
+(2, 'Linea blanca'),
+(3, 'Linea de alimentos');
+
 -- --------------------------------------------------------
 
 --
@@ -107,10 +125,41 @@ CREATE TABLE `productos` (
   `id_pro` int(11) NOT NULL,
   `nombre_pro` varchar(50) COLLATE utf8_bin NOT NULL,
   `cantidad_pro` varchar(50) COLLATE utf8_bin NOT NULL,
-  `precio_pro` varchar(50) COLLATE utf8_bin NOT NULL,
+  `precio_pro` double NOT NULL,
   `id_linea` int(11) NOT NULL,
   `id_cat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id_pro`, `nombre_pro`, `cantidad_pro`, `precio_pro`, `id_linea`, `id_cat`) VALUES
+(1, 'Queso', '2', 2.25, 3, 1),
+(2, 'Leche', '4', 0.8, 3, 1),
+(3, 'Definfectante', '20', 0.75, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id_usu` int(11) NOT NULL,
+  `nombre_usu` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `contrasena_usu` varchar(50) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usu`, `nombre_usu`, `contrasena_usu`) VALUES
+(1, 'eddy.montalvan', 'Admin**+19'),
+(2, 'david.tigua', 'Admin**+19'),
+(3, 'brian.huertas', 'Admin**+19'),
+(4, 'geo.torres', 'Admin**+19');
 
 -- --------------------------------------------------------
 
@@ -120,10 +169,18 @@ CREATE TABLE `productos` (
 
 CREATE TABLE `vendedores` (
   `id_ven` int(11) NOT NULL,
+  `identificacion_ven` varchar(50) COLLATE utf8_bin NOT NULL,
   `nombre_ven` varchar(50) COLLATE utf8_bin NOT NULL,
   `apellido_ven` varchar(50) COLLATE utf8_bin NOT NULL,
   `tipo_ven` varchar(50) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `vendedores`
+--
+
+INSERT INTO `vendedores` (`id_ven`, `identificacion_ven`, `nombre_ven`, `apellido_ven`, `tipo_ven`) VALUES
+(1, '9898989898', 'IPOLITO', 'ZAMBRANO', 'PUNTO DE VENTA');
 
 --
 -- Índices para tablas volcadas
@@ -174,6 +231,13 @@ ALTER TABLE `productos`
   ADD KEY `id_linea` (`id_linea`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usu`),
+  ADD UNIQUE KEY `id_usu` (`id_usu`);
+
+--
 -- Indices de la tabla `vendedores`
 --
 ALTER TABLE `vendedores`
@@ -188,27 +252,32 @@ ALTER TABLE `vendedores`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_cli` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `lineas`
 --
 ALTER TABLE `lineas`
-  MODIFY `id_linea` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_linea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_pro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `vendedores`
 --
 ALTER TABLE `vendedores`
-  MODIFY `id_ven` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ven` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Restricciones para tablas volcadas
 --
